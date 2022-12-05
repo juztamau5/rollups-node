@@ -2,11 +2,11 @@
 # SPDX-License-Identifier: Apache-2.0 (see LICENSE)
 
 variable "TAG" {
-  default = "devel"
+  default = "1.1.0"
 }
 
 variable "DOCKER_ORGANIZATION" {
-  default = "cartesi"
+  default = "juztamau5"
 }
 
 target "rollups-node" {
