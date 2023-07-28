@@ -1,7 +1,6 @@
 // (c) Cartesi and individual authors (see AUTHORS)
 // SPDX-License-Identifier: Apache-2.0 (see LICENSE)
 
-use rollups_events::Hash;
 use std::path::PathBuf;
 
 pub mod config;
@@ -33,9 +32,7 @@ pub trait SnapshotManager {
     /// Set the most recent snapshot
     async fn set_latest(&self, snapshot: Snapshot) -> Result<(), Self::Error>;
 
-    /// Get the snapshot's template hash
-    async fn get_template_hash(
-        &self,
-        snapshot: &Snapshot,
-    ) -> Result<Hash, Self::Error>;
+    /// Compares the Snapshot template hash with the one stored on-chain,
+    /// failing if they don't match
+    async fn validate(&self, snapshot: &Snapshot) -> Result<(), Self::Error>;
 }

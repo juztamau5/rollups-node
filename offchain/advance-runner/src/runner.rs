@@ -53,8 +53,8 @@ pub enum RunnerError<SnapError: snafu::Error + 'static> {
     ))]
     ParentIdMismatchError { expected: String, got: String },
 
-    #[snafu(display("failed to get hash from snapshot "))]
-    GetSnapshotHashError { source: SnapError },
+    #[snafu(display("failed to validate snapshot"))]
+    ValidateSnapshotError { source: SnapError },
 }
 
 type Result<T, SnapError> = std::result::Result<T, RunnerError<SnapError>>;
@@ -121,12 +121,11 @@ impl<Snap: SnapshotManager + std::fmt::Debug + 'static> Runner<Snap> {
             .context(GetLatestSnapshotSnafu)?;
         tracing::info!(?snapshot, "got latest snapshot");
 
-        let offchain_hash = self
-            .snapshot_manager
-            .get_template_hash(&snapshot)
+        self.snapshot_manager
+            .validate(&snapshot)
             .await
-            .context(GetSnapshotHashSnafu)?;
-        tracing::trace!(?offchain_hash, "got snapshot hash");
+            .context(ValidateSnapshotSnafu)?;
+        tracing::info!("snapshot is valid");
 
         let event_id = self
             .broker
