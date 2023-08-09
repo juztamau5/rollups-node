@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added authority claimer service to support reader mode
 
+### Removed
+
+- Remove onchain code from node repository
+
 ## [1.0.0] 2023-08-22
 
 ### Added

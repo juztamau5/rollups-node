@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0 (see LICENSE)
 
 # syntax=docker.io/docker/dockerfile:1.4
+
 # deps install
 FROM rust:1.71.0-bookworm AS chef
 
@@ -70,7 +71,7 @@ DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends ca-c
 rm -rf /var/lib/apt/lists/*
 EOF
 COPY --from=builder /usr/src/app/offchain/target/release/cartesi-rollups-dispatcher /opt/cartesi/bin/cartesi-rollups-dispatcher
-COPY onchain/rollups/export/abi /opt/cartesi/share/deployments/
+COPY --from=cartesi/deployments:0.9.1 /opt/cartesi/share/deployments /opt/cartesi/share/deployments
 USER cartesi
 ENTRYPOINT ["/opt/cartesi/bin/cartesi-rollups-dispatcher"]
 
@@ -103,8 +104,3 @@ FROM runtime AS host_runner
 COPY --from=builder /usr/src/app/offchain/target/release/cartesi-rollups-host-runner /opt/cartesi/bin/cartesi-rollups-host-runner
 USER cartesi
 ENTRYPOINT ["/opt/cartesi/bin/cartesi-rollups-host-runner"]
-
-FROM scratch AS deployments
-
-WORKDIR /opt/cartesi/share/deployments
-COPY onchain/rollups/export/abi .
