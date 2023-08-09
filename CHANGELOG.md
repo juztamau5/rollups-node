@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed timestamp in GraphQL API
 - Fixed BigInt in GraphQL API
 
+### Removed
+
+- Remove onchain code from node repository
+
 ## [1.0.0] 2023-08-22
 
 ### Added
