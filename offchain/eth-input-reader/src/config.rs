@@ -2,9 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0 (see LICENSE)
 
 use clap::Parser;
-use eth_state_client_lib::config::{
-    Error as SCError, SCConfig, SCEnvCLIConfig,
-};
+use eth_block_history::config::{BHConfig, BHEnvCLIConfig};
+use eth_state_fold::config::{SFConfig, SFEnvCLIConfig};
 use eth_tx_manager::{
     config::{Error as TxError, TxEnvCLIConfig, TxManagerConfig},
     Priority,
@@ -24,13 +23,16 @@ use types::deployment_files::{
 #[command(about = "Configuration for rollups eth-input-reader")]
 pub struct EthInputReaderEnvCLIConfig {
     #[command(flatten)]
-    pub sc_config: SCEnvCLIConfig,
-
-    #[command(flatten)]
     pub tx_config: TxEnvCLIConfig,
 
     #[command(flatten)]
     pub broker_config: BrokerCLIConfig,
+
+    #[command(flatten)]
+    pub sf_config: SFEnvCLIConfig,
+
+    #[command(flatten)]
+    pub bh_config: BHEnvCLIConfig,
 
     /// Path to file with deployment json of dapp
     #[arg(long, env, default_value = "./dapp_deployment.json")]
@@ -47,9 +49,10 @@ pub struct EthInputReaderEnvCLIConfig {
 
 #[derive(Clone, Debug)]
 pub struct EthInputReaderConfig {
-    pub sc_config: SCConfig,
     pub tx_config: TxManagerConfig,
     pub broker_config: BrokerConfig,
+    pub sf_config: SFConfig,
+    pub bh_config: BHConfig,
 
     pub dapp_deployment: DappDeployment,
     pub rollups_deployment: RollupsDeployment,
@@ -59,9 +62,6 @@ pub struct EthInputReaderConfig {
 
 #[derive(Debug, Snafu)]
 pub enum Error {
-    #[snafu(display("StateClient configuration error: {}", source))]
-    StateClientError { source: SCError },
-
     #[snafu(display("TxManager configuration error: {}", source))]
     TxManagerError { source: TxError },
 
@@ -97,12 +97,13 @@ impl Config {
                 "eth_input_reader",
             );
 
-        let sc_config = SCConfig::initialize(eth_input_reader_config.sc_config)
-            .context(StateClientSnafu)?;
-
         let tx_config =
             TxManagerConfig::initialize(eth_input_reader_config.tx_config)
                 .context(TxManagerSnafu)?;
+
+        let sf_config = SFConfig::initialize(eth_input_reader_config.sf_config);
+
+        let bh_config = BHConfig::initialize(eth_input_reader_config.bh_config);
 
         let path = eth_input_reader_config.rd_dapp_deployment_file;
         let dapp_deployment: DappDeployment = read_json(path)?;
@@ -114,15 +115,11 @@ impl Config {
         let broker_config =
             BrokerConfig::from(eth_input_reader_config.broker_config);
 
-        assert!(
-            sc_config.default_confirmations < tx_config.default_confirmations,
-            "`state-client confirmations` has to be less than `tx-manager confirmations,`"
-        );
-
         let eth_input_reader_config = EthInputReaderConfig {
-            sc_config,
             tx_config,
             broker_config,
+            sf_config,
+            bh_config,
             dapp_deployment,
             rollups_deployment,
             epoch_duration: eth_input_reader_config.rd_epoch_duration,

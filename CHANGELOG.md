@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Renamed `dispatcher` service to `eth-input-reader`
+- Refactored how `state-fold` is used inside `eth-input-reader`
 
 ### Removed
 

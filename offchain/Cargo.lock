@@ -1642,9 +1642,11 @@ dependencies = [
  "backoff",
  "clap",
  "contracts",
- "eth-state-client-lib",
+ "eth-block-history",
+ "eth-state-fold",
  "eth-state-fold-types",
  "eth-tx-manager",
+ "ethers",
  "ethers-signers",
  "futures",
  "http-server",
@@ -1692,24 +1694,6 @@ dependencies = [
  "sha3",
  "thiserror",
  "uuid 0.8.2",
-]
-
-[[package]]
-name = "eth-state-client-lib"
-version = "0.7.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "78b7d6b6315771fab8783b4aefdd034e887c2e688ac0357dc1007b97b49e4296"
-dependencies = [
- "async-trait",
- "clap",
- "eth-state-fold-types",
- "eth-state-server-common",
- "serde",
- "serde_json",
- "snafu",
- "tokio",
- "tokio-stream",
- "tonic",
 ]
 
 [[package]]
