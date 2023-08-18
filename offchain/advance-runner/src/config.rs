@@ -9,6 +9,7 @@ use crate::server_manager::ServerManagerCLIConfig;
 pub use crate::server_manager::ServerManagerConfig;
 pub use crate::snapshot::config::{FSManagerConfig, SnapshotConfig};
 use crate::snapshot::config::{SnapshotCLIConfig, SnapshotConfigError};
+use logs::{LogsConfig, LogsEnvCliConfig};
 pub use rollups_events::{
     BrokerCLIConfig, BrokerConfig, DAppMetadata, DAppMetadataCLIConfig,
 };
@@ -19,6 +20,7 @@ pub struct AdvanceRunnerConfig {
     pub broker_config: BrokerConfig,
     pub dapp_metadata: DAppMetadata,
     pub snapshot_config: SnapshotConfig,
+    pub logs_config: LogsConfig,
     pub backoff_max_elapsed_duration: Duration,
     pub healthcheck_port: u16,
 }
@@ -36,11 +38,15 @@ impl AdvanceRunnerConfig {
         let backoff_max_elapsed_duration =
             Duration::from_millis(cli_config.backoff_max_elapsed_duration);
         let healthcheck_port = cli_config.healthcheck_port;
+
+        let logs_config = LogsConfig::initialize(cli_config.logs_cli_config);
+
         Ok(Self {
             server_manager_config,
             broker_config,
             dapp_metadata,
             snapshot_config,
+            logs_config,
             backoff_max_elapsed_duration,
             healthcheck_port,
         })
@@ -66,6 +72,9 @@ struct CLIConfig {
 
     #[command(flatten)]
     snapshot_cli_config: SnapshotCLIConfig,
+
+    #[command(flatten)]
+    pub logs_cli_config: LogsEnvCliConfig,
 
     /// The max elapsed time for backoff in ms
     #[arg(long, env, default_value = "120000")]

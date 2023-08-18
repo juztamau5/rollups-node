@@ -12,6 +12,7 @@ path = "src/main.rs"
 grpc-interfaces = { path = "../grpc-interfaces" }
 http-health-check = { path = "../http-health-check" }
 rollups-events = { path = "../rollups-events" }
+logs = {path = "../logs"}
 
 async-trait.workspace = true
 backoff = { workspace = true, features = ["tokio"] }

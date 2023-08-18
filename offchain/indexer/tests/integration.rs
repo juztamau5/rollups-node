@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0 (see LICENSE)
 
 use indexer::IndexerError;
+use logs::LogsConfig;
 use rand::Rng;
 use rollups_data::{
     Input, Notice, OutputEnum, Proof, Report, RepositoryConfig, Voucher,
@@ -442,11 +443,16 @@ async fn spawn_indexer(
         consume_timeout: BROKER_CONSUME_TIMEOUT,
         backoff: Default::default(),
     };
+    let logs_config = LogsConfig {
+        enable_timestamp: false,
+        enable_color: false,
+    };
     let indexer_config = indexer::IndexerConfig {
         repository_config,
         dapp_metadata,
         broker_config,
         healthcheck_port: 0,
+        logs_config,
     };
     tokio::spawn(async move {
         indexer::run(indexer_config).await.map_err(|e| {

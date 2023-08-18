@@ -251,6 +251,7 @@ dependencies = [
  "grpc-interfaces",
  "hex",
  "http-health-check",
+ "logs",
  "rand 0.8.5",
  "rollups-events",
  "sha3",
@@ -485,6 +486,7 @@ dependencies = [
  "eth-tx-manager",
  "ethers",
  "http-server",
+ "logs",
  "rollups-events",
  "rusoto_core",
  "serde",
@@ -1516,6 +1518,7 @@ dependencies = [
  "http-server",
  "hyper",
  "im",
+ "logs",
  "rand 0.8.5",
  "redis",
  "rollups-events",
@@ -2425,6 +2428,7 @@ dependencies = [
  "hex",
  "http-health-check",
  "juniper",
+ "logs",
  "rollups-data",
  "serde",
  "serde_json",
@@ -2556,6 +2560,7 @@ dependencies = [
  "grpc-interfaces",
  "hex",
  "http-health-check",
+ "logs",
  "mockall",
  "rand 0.8.5",
  "reqwest",
@@ -2803,6 +2808,7 @@ dependencies = [
  "clap",
  "env_logger",
  "http-health-check",
+ "logs",
  "rand 0.8.5",
  "rollups-data",
  "rollups-events",
@@ -2853,11 +2859,10 @@ dependencies = [
  "actix-cors",
  "actix-web",
  "clap",
- "env_logger",
  "futures",
  "hex",
  "http-health-check",
- "log",
+ "logs",
  "prost",
  "regex",
  "reqwest",
@@ -2869,6 +2874,7 @@ dependencies = [
  "tonic",
  "tonic-build",
  "tracing",
+ "tracing-actix-web",
  "uuid 1.4.1",
 ]
 
@@ -3090,6 +3096,15 @@ name = "log"
 version = "0.4.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b5e6163cb8c49088c2c36f57875e58ccd8c87c7427f7fbd50ea6710b2f3f2e8f"
+
+[[package]]
+name = "logs"
+version = "1.0.0"
+dependencies = [
+ "clap",
+ "tracing",
+ "tracing-subscriber",
+]
 
 [[package]]
 name = "matchers"
@@ -4878,10 +4893,12 @@ dependencies = [
 name = "state-server"
 version = "1.0.0"
 dependencies = [
+ "clap",
  "eth-block-history",
  "eth-state-fold",
  "eth-state-fold-types",
  "eth-state-server-lib",
+ "logs",
  "serde",
  "snafu",
  "tokio",
@@ -5441,6 +5458,18 @@ dependencies = [
  "pin-project-lite",
  "tracing-attributes",
  "tracing-core",
+]
+
+[[package]]
+name = "tracing-actix-web"
+version = "0.7.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c0b08ce08cbde6a96fc1e4ebb8132053e53ec7a5cd27eef93ede6b73ebbda06"
+dependencies = [
+ "actix-web",
+ "pin-project",
+ "tracing",
+ "uuid 1.4.1",
 ]
 
 [[package]]

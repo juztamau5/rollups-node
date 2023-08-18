@@ -3,6 +3,7 @@
 
 use clap::Parser;
 
+use logs::{LogsConfig, LogsEnvCliConfig};
 pub use rollups_data::{RepositoryCLIConfig, RepositoryConfig};
 pub use rollups_events::{
     BrokerCLIConfig, BrokerConfig, DAppMetadata, DAppMetadataCLIConfig,
@@ -13,6 +14,7 @@ pub struct IndexerConfig {
     pub repository_config: RepositoryConfig,
     pub dapp_metadata: DAppMetadata,
     pub broker_config: BrokerConfig,
+    pub logs_config: LogsConfig,
     pub healthcheck_port: u16,
 }
 
@@ -26,6 +28,9 @@ pub struct CLIConfig {
 
     #[command(flatten)]
     broker_config: BrokerCLIConfig,
+
+    #[command(flatten)]
+    pub logs_config: LogsEnvCliConfig,
 
     /// Port of health check
     #[arg(
@@ -42,6 +47,7 @@ impl From<CLIConfig> for IndexerConfig {
             repository_config: cli_config.repository_config.into(),
             dapp_metadata: cli_config.dapp_metadata_config.into(),
             broker_config: cli_config.broker_config.into(),
+            logs_config: cli_config.logs_config.into(),
             healthcheck_port: cli_config.healthcheck_port,
         }
     }

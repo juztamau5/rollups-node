@@ -10,6 +10,7 @@ pub use error::{AuthorityClaimerConfigError, TxSigningConfigError};
 use cli::AuthorityClaimerCLI;
 use eth_tx_manager::{config::TxManagerConfig, Priority};
 use http_server::HttpServerConfig;
+use logs::LogsConfig;
 use rollups_events::{Address, BrokerConfig, Hash};
 use rusoto_core::Region;
 
@@ -25,6 +26,7 @@ pub struct AuthorityClaimerConfig {
     pub tx_signing_config: TxSigningConfig,
     pub tx_manager_priority: Priority,
     pub broker_config: BrokerConfig,
+    pub logs_config: LogsConfig,
     pub dapp_address: Address,
     pub dapp_deploy_block_hash: Hash,
 }
