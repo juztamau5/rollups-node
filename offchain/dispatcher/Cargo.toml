@@ -3,6 +3,7 @@ name = "dispatcher"
 edition.workspace = true
 license.workspace = true
 version.workspace = true
+build = "src/built/build.rs"
 
 [[bin]]
 name = "cartesi-rollups-dispatcher"
@@ -18,6 +19,7 @@ log = {path = "../log"}
 async-trait.workspace = true
 axum.workspace = true
 backoff = { workspace = true, features = ["tokio"] }
+built = {workspace = true, features = ["chrono","git2"]}
 clap = { workspace = true, features = ["derive", "env"] }
 eth-state-client-lib.workspace = true
 eth-state-fold-types = { workspace = true, features = ["ethers"] }
@@ -47,3 +49,6 @@ redis.workspace = true
 serial_test.workspace = true
 testcontainers.workspace = true
 tracing-test = { workspace = true, features = ["no-env-filter"] }
+
+[build-dependencies]
+built = {workspace = true}

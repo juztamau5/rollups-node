@@ -1,0 +1,11 @@
+[package]
+name = "log"
+version = "1.0.0"
+edition = "2021"
+license = "Apache-2.0"
+
+[dependencies]
+clap = { workspace = true, features = ["derive", "env"] }
+tracing.workspace = true
+tracing-subscriber = { workspace = true, features = ["env-filter"] }
+

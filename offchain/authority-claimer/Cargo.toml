@@ -3,6 +3,8 @@ name = "authority-claimer"
 edition.workspace = true
 license.workspace = true
 version.workspace = true
+build = "src/built/build.rs"
+
 
 [[bin]]
 name = "cartesi-rollups-authority-claimer"
@@ -15,6 +17,7 @@ rollups-events = { path = "../rollups-events" }
 log = { path = "../log" }
 
 async-trait.workspace = true
+built = {workspace = true, features = ["chrono","git2"]}
 clap = { workspace = true, features = ["derive", "env"] }
 eth-tx-manager.workspace = true
 ethers.workspace = true
@@ -25,3 +28,7 @@ snafu.workspace = true
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
 tracing-subscriber = { workspace = true, features = ["env-filter"] }
 tracing.workspace = true
+
+
+[build-dependencies]
+built = {workspace = true}

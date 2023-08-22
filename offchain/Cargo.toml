@@ -2,6 +2,7 @@
 members = [
   "advance-runner",
   "authority-claimer",
+  "build-info",
   "contracts",
   "data",
   "dispatcher",
@@ -36,6 +37,7 @@ awc = "3.1"
 axum = "0.6"
 backoff = "0.4"
 base64 = "0.21"
+built = "0.6"
 byteorder = "1.4"
 chrono = "0.4"
 clap = "4.3"
@@ -91,3 +93,7 @@ url = "2"
 urlencoding = "2.1"
 users = "0.11"
 uuid = "1.4"
+
+[workspace.build-dependencies]
+built = "0.6"
+
