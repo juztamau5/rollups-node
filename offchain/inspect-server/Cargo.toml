@@ -12,8 +12,6 @@ path = "src/main.rs"
 http-health-check = { path = "../http-health-check" }
 logs = { path = "../logs" }
 
-
-
 actix-cors.workspace = true
 actix-web.workspace = true
 clap = { workspace = true, features = ["derive", "env"] }

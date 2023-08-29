@@ -11,9 +11,9 @@ test = false
 
 [dependencies]
 http-health-check = { path = "../http-health-check" }
+logs = { path = "../logs" }
 rollups-data = { path = "../data" }
 rollups-events = { path = "../rollups-events" }
-logs = {path = "../logs"}
 
 chrono.workspace = true
 clap = { workspace = true, features = ["derive", "env"] }

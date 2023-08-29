@@ -13,6 +13,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     logs::configure(&config.logs_config);
 
-    info!(?config, "Starting Indexer");
+    info!(?config, "starting indexer");
     indexer::run(config).await.map_err(|e| e.into())
 }

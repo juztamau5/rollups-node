@@ -10,6 +10,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     logs::configure(&config.logs_config);
 
-    info!(?config, "Starting Advance Runner");
+    info!(?config, "starting advance runner");
     advance_runner::run(config).await.map_err(|e| e.into())
 }

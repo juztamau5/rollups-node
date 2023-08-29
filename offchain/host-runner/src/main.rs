@@ -36,7 +36,7 @@ async fn main() {
 
     logs::configure(&config.logs_config);
 
-    info!(?config, "Starting Host Runner");
+    info!(?config, "starting host runner");
 
     let controller =
         Controller::new(Duration::from_millis(config.finish_timeout));

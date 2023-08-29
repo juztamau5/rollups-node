@@ -1,12 +1,12 @@
 use clap::Parser;
-use logs::{LogsConfig, LogsEnvCliConfig};
 use eth_state_server_lib::config::{
     Result, StateServerConfig, StateServerEnvCLIConfig,
 };
+use logs::{LogsConfig, LogsEnvCliConfig};
 
 #[derive(Debug, Clone, Parser)]
-#[command(name = "sate_server_config")]
-#[command(about = "Configuration for state-fold state-server")]
+#[command(name = "state_server_config")]
+#[command(about = "Configuration for the state-server")]
 pub struct EnvCLIConfig {
     #[command(flatten)]
     pub state_server_config: StateServerEnvCLIConfig,

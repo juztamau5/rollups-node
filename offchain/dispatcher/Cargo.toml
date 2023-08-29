@@ -11,9 +11,9 @@ path = "src/main.rs"
 [dependencies]
 contracts = { path = "../contracts" }
 http-server = { path = "../http-server" }
+logs = { path = "../logs" }
 rollups-events = { path = "../rollups-events" }
 types = { path = "../types" }
-logs = {path = "../logs"} 
 
 async-trait.workspace = true
 axum.workspace = true

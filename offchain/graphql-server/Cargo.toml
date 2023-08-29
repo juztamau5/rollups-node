@@ -14,8 +14,8 @@ path = "src/schema/generate_schema.rs"
 
 [dependencies]
 http-health-check = { path = "../http-health-check" }
-rollups-data = { path = "../data" }
 logs = { path = "../logs" }
+rollups-data = { path = "../data" }
 
 actix-cors.workspace = true
 actix-web.workspace = true

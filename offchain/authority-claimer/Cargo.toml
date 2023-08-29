@@ -11,8 +11,8 @@ test = false
 
 [dependencies]
 http-server = { path = "../http-server" }
-rollups-events = { path = "../rollups-events" }
 logs = { path = "../logs" }
+rollups-events = { path = "../rollups-events" }
 
 async-trait.workspace = true
 clap = { workspace = true, features = ["derive", "env"] }

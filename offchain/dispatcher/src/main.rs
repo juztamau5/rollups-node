@@ -12,6 +12,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     logs::configure(&config.dispatcher_config.logs_config);
 
-    info!(?config, "Starting Dispatcher");
+    info!(?config, "starting dispatcher");
     dispatcher::run(config).await.map_err(|e| e.into())
 }

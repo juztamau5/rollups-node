@@ -13,6 +13,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     logs::configure(&config.logs_config);
 
-    info!(?config, "Starting GraphQL Server");
+    info!(?config, "starting graphql server");
     graphql_server::run(config).await.map_err(|e| e.into())
 }

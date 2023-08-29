@@ -21,7 +21,6 @@ pub struct LogsConfig {
 impl LogsConfig {
     pub fn initialize(env_cli_config: LogsEnvCliConfig) -> Self {
         let enable_timestamp = env_cli_config.logs_enable_timestamp;
-
         let enable_color = env_cli_config.logs_enable_color;
 
         LogsConfig {

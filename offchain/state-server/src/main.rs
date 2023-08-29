@@ -10,7 +10,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     logs::configure(&config.logs_config);
 
-    tracing::info!(?config, "Starting State Server");
+    tracing::info!(?config, "starting state server");
 
     state_server::run_server::<RollupsState>(config.state_server_config)
         .await

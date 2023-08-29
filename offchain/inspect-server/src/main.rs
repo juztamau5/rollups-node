@@ -12,7 +12,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     logs::configure(&config.logs_config);
 
-    info!(?config, "Starting Inpect Server");
+    info!(?config, "starting inspect server");
 
     inspect_server::run(config).await.map_err(|e| e.into())
 }
