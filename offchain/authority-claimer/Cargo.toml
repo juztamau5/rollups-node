@@ -12,9 +12,10 @@ test = false
 [dependencies]
 http-server = { path = "../http-server" }
 rollups-events = { path = "../rollups-events" }
+log = { path = "../log" }
 
 async-trait.workspace = true
-clap = { workspace = true, features = ["derive"] }
+clap = { workspace = true, features = ["derive", "env"] }
 eth-tx-manager.workspace = true
 ethers.workspace = true
 rusoto_core.workspace = true
