@@ -1,2 +1,5 @@
 .git
+**/forge-cache/
+**/node_modules/
+**/out/
 **/target/
