@@ -6,6 +6,8 @@ target "docker-platforms" {}
 
 group "default" {
   targets = [
+    "arbitration",
+    "hardhat",
     "rollups-node",
   ]
 }
@@ -15,4 +17,16 @@ target "rollups-node" {
   dockerfile = "./build/Dockerfile"
   target     = "rollups-node"
   context    = ".."
+}
+
+target "hardhat" {
+  inherits = ["docker-metadata-action", "docker-platforms"]
+  target   = "hardhat"
+  context    = "../rollups-contracts/onchain"
+}
+
+target "arbitration" {
+  inherits = ["docker-metadata-action", "docker-platforms"]
+  target   = "arbitration"
+  context    = "../rollups-contracts/onchain"
 }

@@ -12,3 +12,11 @@ variable "DOCKER_ORGANIZATION" {
 target "rollups-node" {
   tags = ["${DOCKER_ORGANIZATION}/rollups-node:${TAG}"]
 }
+
+target "hardhat" {
+  tags = ["${DOCKER_ORGANIZATION}/rollups-hardhat:${TAG}"]
+}
+
+target "arbitration" {
+  tags = ["${DOCKER_ORGANIZATION}/rollups-arbitration:${TAG}"]
+}
