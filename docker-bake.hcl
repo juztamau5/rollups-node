@@ -5,8 +5,10 @@ target "docker-platforms" {}
 group "default" {
   targets = [
     "advance-runner",
+    "arbitration",
     "dispatcher",
     "graphql-server",
+    "hardhat",
     "host-runner",
     "inspect-server",
     "indexer",
@@ -68,4 +70,16 @@ target "host-runner" {
   dockerfile = "offchain/Dockerfile"
   target     = "host_runner"
   context    = "."
+}
+
+target "hardhat" {
+  inherits = ["docker-metadata-action", "docker-platforms"]
+  context  = "./offchain/rollups-contracts/onchain"
+  target   = "hardhat"
+}
+
+target "arbitration" {
+  inherits = ["docker-metadata-action", "docker-platforms"]
+  context  = "./offchain/rollups-contracts/onchain"
+  target   = "arbitration"
 }
