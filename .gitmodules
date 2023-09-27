@@ -1,3 +1,6 @@
 [submodule "grpc-interfaces"]
 	path = offchain/grpc-interfaces/grpc-interfaces
 	url = ../grpc-interfaces.git
+[submodule "rollups-contracts"]
+	path = rollups-contracts
+	url = https://github.com/juztamau5/rollups-contracts.git
